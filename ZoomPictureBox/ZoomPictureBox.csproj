@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBEE9936-B5C1-40E3-A690-4A1025DA0537}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ZoomPictureBox</RootNamespace>
+    <AssemblyName>ZoomPictureBox</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorMap\ColorMapClass.cs" />
+    <Compile Include="ColorMap\Cyclic\HsvColorMap.cs" />
+    <Compile Include="ColorMap\Cyclic\TwilightColorMap.cs" />
+    <Compile Include="ColorMap\Cyclic\TwilightShiftedColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\BrbgColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\BwrColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\CoolwarmColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\PiygColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\PrgnColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\PuorColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\RdbuColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\RdgyColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\RdylbuColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\RdylgnColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\SeismicColorMap.cs" />
+    <Compile Include="ColorMap\Diverging\SpectralColorMap.cs" />
+    <Compile Include="ColorMap\GrayColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\BrgColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\CmrmapColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\CubehelixColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\FlagColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\GistEarthColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\GistNcarColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\GistRainbowColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\GistSternColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\Gnuplot2ColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\GnuplotColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\JetColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\NipySpectralColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\OceanColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\PrismColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\RainbowColorMap.cs" />
+    <Compile Include="ColorMap\Miscellaneous\TerrainColorMap.cs" />
+    <Compile Include="ColorMap\PerceptuallyUniformSequential\CividisColorMap.cs" />
+    <Compile Include="ColorMap\PerceptuallyUniformSequential\InfernoColorMap.cs" />
+    <Compile Include="ColorMap\PerceptuallyUniformSequential\MagmaColorMap.cs" />
+    <Compile Include="ColorMap\PerceptuallyUniformSequential\PlasmaColorMap.cs" />
+    <Compile Include="ColorMap\PerceptuallyUniformSequential\ViridisColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\AccentColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Dark2ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\PairedColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Pastel1ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Pastel2ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Set1ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Set2ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Set3ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Tab10ColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Tab20bColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Tab20cColorMap.cs" />
+    <Compile Include="ColorMap\Qualitative\Tab20ColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\AfmhotColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\AutumnColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\BinaryColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\BoneColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\CoolColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\CopperColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\GistGrayColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\GistHeatColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\GistYargColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\GrayColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\HotColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\PinkColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\SpringColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\SummerColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\WinterColorMap.cs" />
+    <Compile Include="ColorMap\Sequential2\WistiaColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\BluesColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\BugnColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\BupuColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\GnbuColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\GreensColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\GreysColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\OrangesColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\OrrdColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\PubuColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\PubugnColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\PurdColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\PurplesColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\RdpuColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\RedsColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\YlgnbuColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\YlgnColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\YlorbrColorMap.cs" />
+    <Compile Include="ColorMap\Sequential\YlorrdColorMap.cs" />
+    <Compile Include="Dialog\AxisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AxisForm.Designer.cs">
+      <DependentUpon>AxisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\PropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\PropertyForm.Designer.cs">
+      <DependentUpon>PropertyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums.cs" />
+    <Compile Include="ShapeManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Shape\BaseMultiPointShape.cs" />
+    <Compile Include="Shape\BaseShape.cs" />
+    <Compile Include="Shape\Bezier.cs" />
+    <Compile Include="Shape\Circle.cs" />
+    <Compile Include="Shape\Curve.cs" />
+    <Compile Include="Shape\Ellipse.cs" />
+    <Compile Include="Shape\FillRectangle.cs" />
+    <Compile Include="Shape\Line.cs" />
+    <Compile Include="Shape\Lines.cs" />
+    <Compile Include="Shape\Point.cs" />
+    <Compile Include="Shape\Polygon.cs" />
+    <Compile Include="Shape\Rectangle.cs" />
+    <Compile Include="Shape\RegularPolygon.cs" />
+    <Compile Include="Shape\RotateRectangle.cs" />
+    <Compile Include="Shape\ShapeAttribute.cs" />
+    <Compile Include="Shape\ShapeUtil.cs" />
+    <Compile Include="ZoomPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ZoomPictureBox.Designer.cs">
+      <DependentUpon>ZoomPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialog\AxisForm.resx">
+      <DependentUpon>AxisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\PropertyForm.resx">
+      <DependentUpon>PropertyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZoomPictureBox.resx">
+      <DependentUpon>ZoomPictureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
