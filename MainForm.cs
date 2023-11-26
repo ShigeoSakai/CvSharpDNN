@@ -778,6 +778,7 @@ namespace CVSharpDNN
 			Bitmap image = null; ;
 			// 実行時間
 			double first_time = 0.0;
+			long first_max = 0L;
 			double proc_time = 0.0;
 			int proc_count = 0;
 			// クラス定義
@@ -826,6 +827,9 @@ namespace CVSharpDNN
 				// 処理時間集計
 				stopwatch.Stop();
 				first_time += (double)stopwatch.ElapsedMilliseconds;
+				if (first_max < stopwatch.ElapsedMilliseconds)
+					first_max = stopwatch.ElapsedMilliseconds;
+				Console.WriteLine("First Time={0}ms", stopwatch.ElapsedMilliseconds);
 				// 結果の更新
 				UpdateResults(imagePath, results,classDef, stopwatch.ElapsedMilliseconds);
 
@@ -865,7 +869,7 @@ namespace CVSharpDNN
 				net = null;
 			}
 			// 集計結果表示
-			updateResultTotal(repeatNum, files.Count, first_time, proc_time, proc_count);
+			updateResultTotal(repeatNum, files.Count, first_time, proc_time, proc_count,first_max);
 		}
 		/// <summary>
 		/// 結果の更新
@@ -929,18 +933,19 @@ namespace CVSharpDNN
 		/// <param name="first_time"></param>
 		/// <param name="proc_time"></param>
 		/// <param name="proc_count"></param>
-		private void updateResultTotal(int repeatNum,int imageNum, double first_time,double proc_time,int proc_count)
+		private void updateResultTotal(int repeatNum,int imageNum, double first_time,double proc_time,int proc_count,long first_max)
 		{
 			if (InvokeRequired)
 			{
-				Invoke((MethodInvoker)delegate { updateResultTotal(repeatNum, imageNum, first_time, proc_time, proc_count); });
+				Invoke((MethodInvoker)delegate { updateResultTotal(repeatNum, imageNum, first_time, proc_time, proc_count, first_max); });
 				return;
 			}
 			// 結果時間の表示
-			TbResult.Text = string.Format("{0}x{1}={2}回実行\r\n最初:{3}ms\r\nそれ以外:{4}ms",
+			TbResult.Text = string.Format("{0}x{1}={2}回実行\r\n最初:{3}ms 最大{5}ms\r\nそれ以外:{4}ms",
 				repeatNum, imageNum, repeatNum * imageNum,
 				first_time / (double)repeatNum,
-				proc_time / (double)proc_count);
+				proc_time / (double)proc_count,
+				first_max);
 		}
 		/// <summary>
 		/// モデル定義の読み込み

@@ -119,21 +119,6 @@ namespace CVSharpDNN.Detection
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>
-		/// <param name="modelfile">モデルファイル名</param>
-		/// <param name="sizeInt">ネットワーク入力サイズ</param>
-		/// <param name="numOfClass">クラス数</param>
-		public DetectionBase(string modelfile, int sizeInt, int numOfClass) :this(sizeInt, numOfClass) { }
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
-		/// <param name="modelfile">モデルファイル名</param>
-		/// <param name="deployfile">prototextファイル名</param>
-		/// <param name="sizeInt">ネットワーク入力サイズ</param>
-		/// <param name="numOfClass">クラス数</param>
-		public DetectionBase(string mdoelfile, string deployfile, int sizeInt, int numOfClass) : this(sizeInt, numOfClass) { }
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
 		/// <param name="framework">フレームワーク</param>
 		/// <param name="modelfile">モデルファイル</param>
 		/// <param name="configfile">Configファイル</param>
@@ -145,73 +130,73 @@ namespace CVSharpDNN.Detection
 			// ネットワークを解放
 			disposeNetwork();
 
-			if (framework.GetArgumentType() == ARGUMENT_TYPE.MODEL_ONLY)
-			{   // モデルのみ
-				string[] ext = framework.GetModelExt();
-				if ((ext != null) && (ext.Length > 0))
-				{
-					bool model_check = false;
-					foreach (string ext_str in ext)
-						if (ext_str == Path.GetExtension(modelfile))
-						{
-							model_check = true;
-							break;
-						}
-					if (model_check)
-					{   // ネットワークを構成
-						try
-						{
-							network = CvDnn.ReadNet(modelfile);
-							return;
-						}
-						catch (Exception ex) { throw new Exception("Network Read Error!", ex); }
+			string dnn_model = "";
+			string dnn_config = "";
+			string dnn_framework = "";
+
+			// モデルのチェック
+			bool model_check = false;
+			string[] ext = framework.GetModelExt();
+			if ((ext != null) && (ext.Length > 0))
+			{
+				foreach (string ext_str in ext)
+					if (ext_str == Path.GetExtension(modelfile))
+					{
+						dnn_model = modelfile;
+						model_check = true;
+						break;
 					}
-					throw new Exception("モデルファイル名の拡張子が一致しない!");
+				if ((model_check == false) && (framework.GetFrameworkString() != null))
+				{   // フレームワーク指定
+					dnn_model = modelfile;
+					dnn_framework = framework.GetFrameworkString();
+					model_check = true;
 				}
-				throw new Exception("フレームワークのモデル拡張子定義がおかしい!");
 			}
 			else
-			{   // モデルとConfig
-				string[] ext = framework.GetModelExt();
-				if ((ext != null) && (ext.Length > 0))
+				throw new Exception("フレームワークのモデル拡張子定義がおかしい!");
+			
+			// Configファイル
+			bool config_check = true;
+			if ((model_check) && (framework.GetArgumentType() == ARGUMENT_TYPE.MODEL_AND_CONFIG))
+			{   // Configファイルチェック
+				config_check = false;
+				string[] config_ex = framework.GetConfigExt();
+				if ((config_ex != null) && (config_ex.Length > 0))
 				{
-					bool model_check = false;
-					foreach (string ext_str in ext)
-						if (ext_str == Path.GetExtension(modelfile))
+					foreach (string ext_str in config_ex)
+						if (ext_str == Path.GetExtension(configfile))
 						{
-							model_check = true;
+							dnn_config = configfile;
+							config_check = true;
 							break;
 						}
-					if (model_check)
-					{   // Configファイルチェック
-						string[] config_ex = framework.GetConfigExt();
-						if ((config_ex != null) && (config_ex.Length > 0))
-						{
-							bool config_check = false;
-							foreach (string ext_str in config_ex)
-								if (ext_str == Path.GetExtension(configfile))
-								{
-									config_check = true;
-									break;
-								}
-							if (config_check)
-							{   // ネットワークの読み込み
-								try
-								{
-									network = CvDnn.ReadNet(modelfile, configfile);
-									return;
-								}
-								catch (Exception ex) { throw new Exception("Network Read Error!", ex); }
-							}
-							throw new Exception("Configファイル名の拡張子が一致しない!");
-						}
-						throw new Exception("フレームワークのConfig拡張子定義がおかしい!");
+					if ((config_check == false) && (dnn_framework != "") &&
+						(framework.GetFrameworkString() != null))
+					{   // フレームワーク指定
+						dnn_config = configfile;
+						dnn_framework = framework.GetFrameworkString();
+						config_check = true;
 					}
-					throw new Exception("モデルファイル名の拡張子が一致しない!");
 				}
-				throw new Exception("フレームワークのモデル拡張子定義がおかしい!");
+				else
+					throw new Exception("フレームワークのConfig拡張子定義がおかしい!");
 			}
+			if ((model_check) && (config_check))
+			{   // ネットワークを構成
+				try
+				{
+					network = CvDnn.ReadNet(dnn_model, dnn_config, dnn_framework);
+					return;
+				}
+				catch (Exception ex) { throw new Exception("Network Read Error!", ex); }
+			}
+			if (model_check == false)
+				throw new Exception("モデルファイル名の拡張子が一致しない!");
+			else if (config_check == false)
+				throw new Exception("Configファイル名の拡張子が一致しない!");
 		}
+
 		/// <summary>
 		/// コンストラクタ
 		/// </summary>

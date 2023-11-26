@@ -22,7 +22,7 @@ namespace CVSharpDNN.Detection
 			ModelExt(".pb"),ConfigExt(".pbtxt")]
 		Tesorflow,
 		[Description("PyTorch"),Argument(ARGUMENT_TYPE.MODEL_ONLY),
-			ModelExt(".t7;.net")]
+			ModelExt(".t7;.net"),FrameworkString("torch")]
 		PyTorch,
 		[Description("Darknet"),Argument(ARGUMENT_TYPE.MODEL_AND_CONFIG),
 			ModelExt(".weights"),ConfigExt(".cfg")]
@@ -92,6 +92,21 @@ namespace CVSharpDNN.Detection
 			Extend = extend;
 		}	
 	}
+	/// <summary>
+	/// フレームワーク文字列
+	/// </summary>
+	public class FrameworkStringAttribute : Attribute
+	{
+		public string Framework { get; set; }
+		public FrameworkStringAttribute(string framework)
+		{
+			Framework = framework;
+		}
+	}
+
+	/// <summary>
+	/// 属性の取得
+	/// </summary>
 	public static class GetAttribute
 	{
 		private static TYPE getAttributeLocal<TYPE>(this Enum value) where TYPE:Attribute
@@ -152,6 +167,13 @@ namespace CVSharpDNN.Detection
 			}
 			return null;
 		}
+		public static string GetFrameworkString(this Enum value)
+		{
+			FrameworkStringAttribute attr = getAttributeLocal<FrameworkStringAttribute>(value);
+			if ((attr != null) && (attr.Framework != null))
+				return attr.Framework;
+			return null;
+		}
 	}
 	/// <summary>
 	/// フレームワーククラス
@@ -207,6 +229,11 @@ namespace CVSharpDNN.Detection
 		/// </summary>
 		/// <returns></returns>
 		public string[] GetConfigExt() {  return Framework.GetConfigExt(); }
+		/// <summary>
+		/// フレームワーク文字列
+		/// </summary>
+		/// <returns></returns>
+		public string GetFrameworkString() { return Framework.GetFrameworkString(); }
 		/// <summary>
 		/// 文字列変換
 		/// </summary>

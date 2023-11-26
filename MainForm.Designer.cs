@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			Drawing.ZoomPictureBox.ShowInfoItem showInfoItem4 = new Drawing.ZoomPictureBox.ShowInfoItem();
+			Drawing.ZoomPictureBox.ShowInfoItem showInfoItem1 = new Drawing.ZoomPictureBox.ShowInfoItem();
 			this.MainTableLayout = new System.Windows.Forms.TableLayoutPanel();
 			this.CtrlPanel = new System.Windows.Forms.Panel();
 			this.ModelGroup = new System.Windows.Forms.GroupBox();
@@ -260,7 +260,7 @@
 			this.ImagePictureBox.AutoRefresh = true;
 			this.ImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ImagePictureBox.Image = null;
-			this.ImagePictureBox.InfoItem = showInfoItem4;
+			this.ImagePictureBox.InfoItem = showInfoItem1;
 			this.ImagePictureBox.Location = new System.Drawing.Point(259, 115);
 			this.ImagePictureBox.Name = "ImagePictureBox";
 			this.ImagePictureBox.Size = new System.Drawing.Size(420, 467);
@@ -346,7 +346,7 @@
 			this.TbRepeatNum.Name = "TbRepeatNum";
 			this.TbRepeatNum.Size = new System.Drawing.Size(31, 19);
 			this.TbRepeatNum.TabIndex = 2;
-			this.TbRepeatNum.Text = "10";
+			this.TbRepeatNum.Text = "1";
 			this.TbRepeatNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// label3
@@ -493,7 +493,7 @@
 			// ToolStripMenuItemAbount
 			// 
 			this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
-			this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(180, 22);
+			this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(116, 22);
 			this.ToolStripMenuItemAbount.Text = "About...";
 			this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
 			// 
