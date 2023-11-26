@@ -1,5 +1,6 @@
 # モデル対応表
-MS-COCOのPre-trained modelsを使用。
+MS-COCOのPre-trained modelsを使用。  
+速度計測結果は、[ここ](ProcessingTime.md)にあります。
 ## CaffeSSD
 
 - 設定
@@ -87,12 +88,12 @@ yolo exportを使って、OpenVino形式に変換。
 
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|[yolox-s]|640|
-|[yolox-m]|640|
-|[yolox-l]|640|
-|[yolox-x]|640|
-|[yolox-Nano]|416|
-|[yolox-Tiny]|416|
+|[yolox-s]|640|◯|◯|◯|◯|◯|◯|◯|◯|◯|
+|[yolox-m]|640|◯|◯|◯|◯|◯|◯|◯|◯|◯|
+|[yolox-l]|640|-|-|-|-|-|-|-|-|-|
+|[yolox-x]|640|-|-|-|-|-|-|-|-|-|
+|[yolox-Nano]|416|-|-|-|-|-|-|-|-|-|
+|[yolox-Tiny]|416|-|-|-|-|-|-|-|-|-|
 
 [yolox-Nano]:https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_nano.onnx
 [yolox-Tiny]:https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.onnx

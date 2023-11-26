@@ -982,6 +982,7 @@ namespace CVSharpDNN
 						read_c = detectionDefList.Load(sr,isTsv);
 					}
 					MessageBox.Show(string.Format("{0}件読み込みました。",read_c), "読み込み結果", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					detectionDefList.MakeComboBox(ref CbDetectionDef, config.DetectionSelected);
 				}
 				else
 					MessageBox.Show(string.Format("'{0}'が読み込めません",filename), "読み込み結果", MessageBoxButtons.OK, MessageBoxIcon.Error);
