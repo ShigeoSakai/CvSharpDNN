@@ -10,7 +10,7 @@
 |SSD300x300|300|  506<br>(990)|  498<br>(1,327)|  663<br>(4,126)|    143<br>(819)|  280<br>475|   180<br>(376)|   918<br>(2,654)|862<br>(1,607)|---|
 |SSD512x512|512|1,270<br>(1,557)|1,529<br>(2,488)|1,982<br>(21,991)|    374<br>(10,079)|  778<br>(1,057)|   459<br>(835)| 2,718<br>(10,322)|2,210<br>(2,360)|---|
 
-<br>
+
 ## YoLov3
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
