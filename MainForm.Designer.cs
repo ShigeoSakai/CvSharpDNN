@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			Drawing.ZoomPictureBox.ShowInfoItem showInfoItem1 = new Drawing.ZoomPictureBox.ShowInfoItem();
+			Drawing.ZoomPictureBox.ShowInfoItem showInfoItem2 = new Drawing.ZoomPictureBox.ShowInfoItem();
 			this.MainTableLayout = new System.Windows.Forms.TableLayoutPanel();
 			this.CtrlPanel = new System.Windows.Forms.Panel();
 			this.ModelGroup = new System.Windows.Forms.GroupBox();
@@ -260,7 +260,7 @@
 			this.ImagePictureBox.AutoRefresh = true;
 			this.ImagePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ImagePictureBox.Image = null;
-			this.ImagePictureBox.InfoItem = showInfoItem1;
+			this.ImagePictureBox.InfoItem = showInfoItem2;
 			this.ImagePictureBox.Location = new System.Drawing.Point(259, 115);
 			this.ImagePictureBox.Name = "ImagePictureBox";
 			this.ImagePictureBox.Size = new System.Drawing.Size(420, 467);
@@ -439,6 +439,7 @@
 			this.TbResult.Multiline = true;
 			this.TbResult.Name = "TbResult";
 			this.TbResult.ReadOnly = true;
+			this.TbResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.TbResult.Size = new System.Drawing.Size(214, 305);
 			this.TbResult.TabIndex = 1;
 			// 

@@ -494,6 +494,10 @@ namespace CVSharpDNN
 
 				stopwatch.Stop();
 				TbResult.Text = string.Format("処理時間:{0}ms\r\n", stopwatch.ElapsedMilliseconds);
+#if TIME_MEASUREMENT
+				TbResult.AppendText(string.Format("Pre:{0}ms Input:{1}ms\r\nForward:{2}ms Post:{3}ms\r\n",
+					network.PreTime, network.SetInputTime, network.ForwardTime, network.PostTime));
+#endif // TIME_MEASUREMENT
 
 				if ((results != null) && (results.Count > 0))
 				{
@@ -781,6 +785,12 @@ namespace CVSharpDNN
 			long first_max = 0L;
 			double proc_time = 0.0;
 			int proc_count = 0;
+
+			double pre_time = 0.0;
+			double set_time = 0.0;
+			double forward_time = 0.0;
+			double post_time = 0.0;
+
 			// クラス定義
 			ClassDefineBase classDef = null;
 			ConstructorInfo classDefCtor = classDefType.GetConstructor(new Type[] { typeof(bool) });
@@ -830,6 +840,13 @@ namespace CVSharpDNN
 				if (first_max < stopwatch.ElapsedMilliseconds)
 					first_max = stopwatch.ElapsedMilliseconds;
 				Console.WriteLine("First Time={0}ms", stopwatch.ElapsedMilliseconds);
+
+#if TIME_MEASUREMENT
+				pre_time += net.PreTime;
+				set_time += net.SetInputTime;
+				forward_time += net.ForwardTime;
+				post_time += net.PostTime;
+#endif // TIME_MEASUREMENT
 				// 結果の更新
 				UpdateResults(imagePath, results,classDef, stopwatch.ElapsedMilliseconds);
 
@@ -858,6 +875,13 @@ namespace CVSharpDNN
 					stopwatch.Stop();
 					proc_time += (double)stopwatch.ElapsedMilliseconds;
 					proc_count++;
+
+#if TIME_MEASUREMENT
+					pre_time += net.PreTime;
+					set_time += net.SetInputTime;
+					forward_time += net.ForwardTime;
+					post_time += net.PostTime;
+#endif // TIME_MEASUREMENT
 					// 結果の更新
 					UpdateResults(imagePath, results_2nd, classDef,stopwatch.ElapsedMilliseconds);
 				}
@@ -869,7 +893,8 @@ namespace CVSharpDNN
 				net = null;
 			}
 			// 集計結果表示
-			updateResultTotal(repeatNum, files.Count, first_time, proc_time, proc_count,first_max);
+			updateResultTotal(repeatNum, files.Count, first_time, proc_time, proc_count,first_max,
+				pre_time,set_time,forward_time,post_time);
 		}
 		/// <summary>
 		/// 結果の更新
@@ -933,19 +958,28 @@ namespace CVSharpDNN
 		/// <param name="first_time"></param>
 		/// <param name="proc_time"></param>
 		/// <param name="proc_count"></param>
-		private void updateResultTotal(int repeatNum,int imageNum, double first_time,double proc_time,int proc_count,long first_max)
+		private void updateResultTotal(int repeatNum,int imageNum, double first_time,double proc_time,int proc_count,long first_max,
+			double pre_time,double set_time,double forward_time,double post_time)
 		{
 			if (InvokeRequired)
 			{
-				Invoke((MethodInvoker)delegate { updateResultTotal(repeatNum, imageNum, first_time, proc_time, proc_count, first_max); });
+				Invoke((MethodInvoker)delegate { updateResultTotal(repeatNum, imageNum, first_time, proc_time, proc_count, first_max,
+					pre_time,set_time,forward_time,post_time); });
 				return;
 			}
 			// 結果時間の表示
-			TbResult.Text = string.Format("{0}x{1}={2}回実行\r\n最初:{3}ms 最大{5}ms\r\nそれ以外:{4}ms",
+			TbResult.Text = string.Format("{0}x{1}={2}回実行\r\n最初:{3}ms 最大{5}ms\r\nそれ以外:{4}ms\r\n",
 				repeatNum, imageNum, repeatNum * imageNum,
 				first_time / (double)repeatNum,
 				proc_time / (double)proc_count,
 				first_max);
+#if TIME_MEASUREMENT
+			TbResult.AppendText(string.Format("Pre:{0}ms\r\nSet:{1}ms\r\nForward:{2}ms\r\nPost:{3}ms",
+				pre_time/(repeatNum * imageNum),
+				set_time/(repeatNum * imageNum),
+				forward_time / (repeatNum * imageNum),
+				post_time / (repeatNum * imageNum)));
+#endif // TIME_MEASUREMENT
 		}
 		/// <summary>
 		/// モデル定義の読み込み

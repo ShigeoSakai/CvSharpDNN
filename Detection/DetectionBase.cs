@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -309,6 +310,15 @@ namespace CVSharpDNN.Detection
 		/// <returns>整形したデータ</returns>
 		protected virtual NMSData post_process(Mat[] result,float confidence_threshold) { return null; }
 
+#if TIME_MEASUREMENT
+		private Stopwatch stopwatch = new Stopwatch();
+
+		public long PreTime {  get; private set; }
+		public long SetInputTime { get; private set; }
+
+		public long ForwardTime { get; private set; }
+		public long PostTime { get; private set; }
+#endif // TIME_MEASUREMENT
 		/// <summary>
 		/// 推論を実行する
 		/// </summary>
@@ -323,31 +333,70 @@ namespace CVSharpDNN.Detection
 				{
 					try
 					{
+#if TIME_MEASUREMENT
+						stopwatch.Reset();
+						stopwatch.Start();
+#endif // TIME_MEASUREMENT
 						// BLOBイメージを取得
 						Mat imageMat = getBlob(ref image);
 
+#if TIME_MEASUREMENT
+						stopwatch.Stop();
+						PreTime = stopwatch.ElapsedMilliseconds;
+
+						stopwatch.Reset();
+						stopwatch.Start();
+#endif // TIME_MEASUREMENT
+
 						// BLOBイメージを設定
 						network.SetInput(imageMat);
+
+#if TIME_MEASUREMENT
+						stopwatch.Stop();
+						SetInputTime = stopwatch.ElapsedMilliseconds;
+#endif // TIME_MEASUREMENT
 						// 出力を準備
 						int output_layer = network.GetUnconnectedOutLayersNames().Count();
 
 						Mat[] outputs = new Mat[output_layer];
 						for (int i = 0; i < output_layer; i++)
 							outputs[i] = new Mat();
+
+#if TIME_MEASUREMENT
+						stopwatch.Reset();
+						stopwatch.Start();
+#endif // TIME_MEASUREMENT
+
 						// 推論実行
 						network.Forward(outputs, network.GetUnconnectedOutLayersNames());
+
+#if TIME_MEASUREMENT
+						stopwatch.Stop();
+						ForwardTime = stopwatch.ElapsedMilliseconds;
+
+						stopwatch.Reset();
+						stopwatch.Start();
+#endif // TIME_MEASUREMENT
 						// 結果を整形
 						NMSData nmsData = post_process(outputs, confidence_threshold);
 						if ((nmsData != null) && (nmsData.Count > 0))
 						{	// NMSを実行
 							CvDnn.NMSBoxes(nmsData.Rects, nmsData.Confidences, confidence_threshold, nms_threshold, out int[] indicates, 1.0F, 0);
 							nmsData.SetIndicate(indicates);
+#if TIME_MEASUREMENT
+							stopwatch.Stop();
+							PostTime = stopwatch.ElapsedMilliseconds;
+#endif // TIME_MEASUREMENT
 							// 結果を返す
 							return nmsData.GetResult();
 						}
+#if TIME_MEASUREMENT
+						stopwatch.Stop();
+						PostTime = stopwatch.ElapsedMilliseconds;
+#endif // TIME_MEASUREMENT
 						return null;
 					}
-					catch(OpenCVException ocvExp)
+					catch (OpenCVException ocvExp)
 					{   // OpenCV例外
 						throw new Exception("Predict() OpenCV Exception", ocvExp);
 					}
