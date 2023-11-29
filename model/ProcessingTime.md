@@ -20,13 +20,13 @@
 |YoLov3 spp|608|1,026<br>(1,969)|1,149<br>(1,928)|1,530<br>(24,589)|340<br>(2,426)|539<br>(1,146)|368<br>(1,035)|2,705<br>(3,244)|2,029<br>(4,102)|4,402<br>(6,183)|
 |YoLov3 tiny|416|  58<br>(224)|  51<br>(286)|    58<br>(13,038)|  25<br>(337)|34<br>(132)|22<br>(177)|81<br>(1,551)|111<br>(357)|178<br>(434)|
 
-<br>
+
 ## YoLov3 Ultralytics
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
 |YoLov3u<br>ONNX|640|2,307<br>(3,689)|2,174<br>(2,666)|2,687<br>(36,927)|---|1,219<br>(2,422)|696<br>(1,171)|6,238<br>(13,607)|4,084<br>(8,259)|9,760<br>(9,905)|
 |YoLov3u<br>OpenVino|640|---|2,229<br>(2,784)|---|---|
-<br>
+
 ## YoLoX
 
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
@@ -36,7 +36,7 @@
 |YoLoX l|640|
 |YoLoX x|640|
 
-<br>
+
 ## YoLov5
 ### ONNX
 
@@ -47,7 +47,7 @@
 |YoLov5l|640|
 |YoLov5x|640|
 
-<br>
+
 ### OpenVINO
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
@@ -56,7 +56,7 @@
 |YoLov5l|640|
 |YoLov5x|640|
 
-<br>
+
 
 ## YoLov5 Ultralytics
 
@@ -69,7 +69,7 @@
 |YoLov5l|640|
 |YoLov5x|640|
 
-<br>
+
 ### OpenVINO
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
@@ -78,14 +78,14 @@
 |YoLov5l|640|
 |YoLov5x|640|
 
-<br>
+
 ## YoLov8
 ### ONNX
 
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
 
-<br>
-## OpenVINO
+
+### OpenVINO
 |model|サイズ|Corei3<br>8130U<br>CPU|Corei3<br>8130U<br>CPU<br>openvino|Corei3<br>8130U<br>iGPU<br>OpenCL|Corei3<br>8130U<br>iGPU<br>openvino|Ryzen5<br>4500U<br>CPU|Ryzen5<br>4500U<br>CPU<br>openvino|Ryzen5<br>4500U<br>OpenCL|Corei5<br>3337U<br>CPU|Corei5<br>3337U<br>openvino|
 |:-:|:-:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
